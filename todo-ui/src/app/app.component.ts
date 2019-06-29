@@ -9,5 +9,5 @@ export class AppComponent {
   title = 'Todo App';
   message = 'My first message to display via interpolation';
   message1 = 'Learning Angular 7';
-  message2 = 'Lets Rock';
+  message2 = 'Let\'s Rock';
 }
