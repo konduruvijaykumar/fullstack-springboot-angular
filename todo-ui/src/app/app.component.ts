@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'todo-ui';
+  title = 'Todo App';
+  message = 'My first message to display via interpolation';
 }
