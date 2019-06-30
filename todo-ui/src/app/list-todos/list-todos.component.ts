@@ -13,12 +13,6 @@ export class ListTodosComponent implements OnInit {
     new Todo(3, 'Learn Kubernetes', false, new Date())
   ];
 
-  // Create object holding data, below is syntax
-  // todo = {
-  //   id: 1,
-  //   description: 'Learn Angular 7'
-  // };
-
   constructor() { }
 
   ngOnInit() {
@@ -28,7 +22,6 @@ export class ListTodosComponent implements OnInit {
 
 export class Todo {
 
-  // We will decide if we need public constructor args or not later.
   // public should be used as it is not getting shown in UI.
   constructor(
     public id: number,
