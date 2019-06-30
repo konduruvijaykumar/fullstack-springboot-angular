@@ -4,6 +4,7 @@
 // So that it is accessible outside, if not you will get compiler error. (Some thing like public class)
 
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 // We can import classes written by us also here.
 // import {AppComponent} from '../app.component';
@@ -27,11 +28,13 @@ export class WelcomeComponent implements OnInit {
   // message = "Some Message"; // you will get tslint warning for "" recommending to change to ''.
   message = 'Some Message';
   // message1:string = 'Some Message'; // Using via strong type reference
+  name = '';
 
   // Here there can be member or local variables inside methods, member variables in methods should be accessed via this keyword
   // Like java constructor
   // public TodoApplication() {..}
-  constructor() { }
+  // Dependency injection
+  constructor(private route: ActivatedRoute) { }
 
   // Implement interface method, java it would be void init() {..}
   ngOnInit() {
@@ -39,6 +42,10 @@ export class WelcomeComponent implements OnInit {
     // console.log(this.message);
     // variable type inferred automatically based on the value assigned by type script
     // this.message = 4; // Compilation error - Type '4' is not assignable to type 'string'
+    // Tslint error - object access via string literals is disallowed (no-string-literal), hence use as below
+    // console.log(this.route.snapshot.params['name']);
+    // console.log(this.route.snapshot.params.name);
+    this.name = this.route.snapshot.params.name;
   }
   // also possible to used return type here using
   // ngOnInit() : void{
