@@ -8,20 +8,26 @@ import { Component, OnInit } from '@angular/core';
 export class ListTodosComponent implements OnInit {
 
   todos = [
-    {id: 1, description: 'Learn Angular 7'},
-    {id: 2, description: 'Become an expert in Java'},
-    {id: 3, description: 'Learn Kubernetes'}
+    new Todo(1, 'Learn Angular 7', false, new Date()),
+    new Todo(2, 'Become an expert in Java', false, new Date()),
+    new Todo(3, 'Learn Kubernetes', false, new Date())
   ];
-
-  // Create object holding data, below is syntax
-  // todo = {
-  //   id: 1,
-  //   description: 'Learn Angular 7'
-  // };
 
   constructor() { }
 
   ngOnInit() {
   }
+
+}
+
+export class Todo {
+
+  // public should be used as it is not getting shown in UI.
+  constructor(
+    public id: number,
+    public description: string,
+    public done: boolean,
+    public targetDate: Date
+  ) {}
 
 }
