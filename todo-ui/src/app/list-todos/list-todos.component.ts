@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListTodosComponent implements OnInit {
 
+  // Create object holding data, below is syntax
+  todo = {
+    id: 1,
+    description: 'Learn Angular 7'
+  };
+
   constructor() { }
 
   ngOnInit() {
