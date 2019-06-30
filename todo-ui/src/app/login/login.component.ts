@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,10 @@ export class LoginComponent implements OnInit {
   invalidLogin = false;
   errorMessage = 'Invalid Credentials';
 
-  constructor() { }
+  // Dependency injection is a built in faeture, just declare it as constructor argument.
+  // In type script variable passed in constructor is available as member variable.
+  // Making private will not be visible outside class
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,6 +26,8 @@ export class LoginComponent implements OnInit {
     // console.log('password: ' + this.password);
     if (this.username === 'vijay' && this.password === 'password') {
       this.invalidLogin = false;
+      // Redirect to welcome page.
+      this.router.navigate(['welcome', this.username]);
     } else {
       this.invalidLogin = true;
     }
