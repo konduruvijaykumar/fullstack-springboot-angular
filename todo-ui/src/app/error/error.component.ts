@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ErrorComponent implements OnInit {
 
+  errorMessage = '404 the requested resource is not found, please contact help desk';
+
   constructor() { }
 
   ngOnInit() {
