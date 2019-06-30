@@ -1,3 +1,17 @@
-<p>
-  list-todos works!
-</p>
+<table border="1">
+  <caption>Todo's List</caption>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- java world it will be: for(Todo todo:todos) { -->
+    <tr *ngFor="let todo of todos">
+      <td>{{todo.id}}</td>
+      <td>{{todo.description}}</td>
+    </tr>
+    <!-- } -->
+  </tbody>
+</table>
