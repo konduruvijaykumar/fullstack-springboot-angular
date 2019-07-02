@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ErrorComponent } from './error/error.component';
 import { ListTodosComponent } from './list-todos/list-todos.component';
 import { MenuComponent } from './menu/menu.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MenuComponent } from './menu/menu.component';
     LoginComponent,
     ErrorComponent,
     ListTodosComponent,
-    MenuComponent
+    MenuComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
