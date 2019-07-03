@@ -23,4 +23,8 @@ export class LocalAuthenticationService {
     return !(user === null);
   }
 
+  logout() {
+    sessionStorage.removeItem('authenticatedUser');
+  }
+
 }

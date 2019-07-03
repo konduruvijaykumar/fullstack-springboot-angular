@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Local } from 'protractor/built/driverProviders';
+import { LocalAuthenticationService } from '../service/local-authentication.service';
 
 @Component({
   selector: 'app-logout',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private localAuthenticationService: LocalAuthenticationService) { }
 
   ngOnInit() {
+    this.localAuthenticationService.logout();
   }
 
 }
