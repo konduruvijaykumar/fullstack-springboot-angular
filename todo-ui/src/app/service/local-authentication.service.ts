@@ -9,8 +9,10 @@ export class LocalAuthenticationService {
   constructor() { }
 
   authenticate(username: string, password: string) {
+    console.log('Before authenticate : ' + this.isUserLoggedIn());
     if (username === 'vijay' && password === 'password') {
       sessionStorage.setItem('authenticatedUser', username);
+      console.log('After authenticate : ' + this.isUserLoggedIn());
       return true;
     }
     return false;
