@@ -8,12 +8,12 @@ import { LocalAuthenticationService } from '../service/local-authentication.serv
 })
 export class MenuComponent implements OnInit {
 
-  isUserLoggedIn = false;
+  // isUserLoggedIn = false;
 
   constructor(private localAuthenticationService: LocalAuthenticationService) { }
 
   ngOnInit() {
-    this.isUserLoggedIn = this.localAuthenticationService.isUserLoggedIn();
+    // this.isUserLoggedIn = this.localAuthenticationService.isUserLoggedIn();
   }
 
 }
