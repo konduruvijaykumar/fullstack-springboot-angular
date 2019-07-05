@@ -51,6 +51,10 @@ export class WelcomeComponent implements OnInit {
   // ngOnInit() : void{
   // }
 
+  getWelcomeMessage(){
+    console.log('Welcom service');
+  }
+
 }
 
 // Module (Ex: This Component) is a file which contains classes and functions definitions.
