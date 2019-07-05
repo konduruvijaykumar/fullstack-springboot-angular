@@ -51,7 +51,7 @@ export class WelcomeComponent implements OnInit {
   // ngOnInit() : void{
   // }
 
-  getWelcomeMessage(){
+  getHelloMessage() {
     console.log('Welcom service');
   }
 
