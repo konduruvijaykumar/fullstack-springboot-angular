@@ -28,7 +28,8 @@ public class HelloController {
 	public HelloBean helloBean() {
 		HelloBean helloBean = new HelloBean();
 		helloBean.setMessage("Hello from bean");
-		return helloBean;
+		throw new RuntimeException("An error occurred, please contact help desk");
+		// return helloBean;
 	}
 	
 	@GetMapping("/hello-path-param/{name}")
