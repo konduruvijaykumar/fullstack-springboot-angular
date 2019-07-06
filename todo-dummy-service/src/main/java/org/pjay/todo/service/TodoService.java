@@ -12,7 +12,9 @@ import org.pjay.todo.model.Todo;
  *
  */
 public interface TodoService {
-	
+
 	List<Todo> getAllTodos(String username);
+
+	Todo deleteTodoById(Long id);
 
 }
