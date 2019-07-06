@@ -46,6 +46,11 @@ export class ListTodosComponent implements OnInit {
     );
   }
 
+  updateTodo(id: number) {
+    console.log('id : ' + id);
+    const username = (sessionStorage.getItem('authenticatedUser') === null) ? '' : sessionStorage.getItem('authenticatedUser');
+  }
+
 }
 
 export class Todo {
