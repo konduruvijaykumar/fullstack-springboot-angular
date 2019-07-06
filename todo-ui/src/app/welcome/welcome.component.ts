@@ -54,7 +54,8 @@ export class WelcomeComponent implements OnInit {
 
   getHelloMessage() {
     // console.log('Welcom service');
-    console.log(this.helloDataService.callHelloMessageWebService());
+    // console.log(this.helloDataService.callHelloMessageWebService());
+    this.helloDataService.callHelloMessageWebService().subscribe();
   }
 
 }
