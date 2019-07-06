@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../service/data/todo-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-todos',
@@ -17,7 +18,7 @@ export class ListTodosComponent implements OnInit {
   todos: Todo[];
   message: string;
 
-  constructor(private todoDataService: TodoDataService) { }
+  constructor(private todoDataService: TodoDataService, private router: Router) { }
 
   ngOnInit() {
     this.refreshTodos();
@@ -47,8 +48,8 @@ export class ListTodosComponent implements OnInit {
   }
 
   updateTodo(id: number) {
-    console.log('id : ' + id);
-    const username = (sessionStorage.getItem('authenticatedUser') === null) ? '' : sessionStorage.getItem('authenticatedUser');
+    // console.log('id : ' + id);
+    this.router.navigate(['todos', id]);
   }
 
 }
