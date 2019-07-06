@@ -5,7 +5,8 @@
 
 <div class="container">
   Click here to get custom message from webservice
-  <button (click)="getHelloMessage()" class="btn btn-success">Get Message</button>
+  <!-- <button (click)="getHelloMessage()" class="btn btn-success">Get Message</button> -->
+  <button (click)="getHelloMessagePathVariableService()" class="btn btn-success">Get Message</button>
 </div>
 
 <div class="container" *ngIf="helloMessageFromService">

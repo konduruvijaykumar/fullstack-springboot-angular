@@ -64,10 +64,21 @@ export class WelcomeComponent implements OnInit {
     // console.log('End of function getHelloMessage()'); // Since async you will this before response comes
   }
 
+  getHelloMessagePathVariableService() {
+    // console.log('Welcom service');
+    // console.log(this.helloDataService.callHelloMessageWebService());
+    this.helloDataService.callHelloPathVariableService(this.name).subscribe(
+      response => this.getSuccessResponse(response),
+      error => this.handleErrorResponse(error)
+    );
+
+    // console.log('End of function getHelloMessage()'); // Since async you will this before response comes
+  }
+
   handleErrorResponse(error: any): void {
-    console.log('error: ' + error);
-    console.log('error.error: ' + error.error);
-    console.log('error.error.message: ' + error.error.message);
+    // console.log('error: ' + error);
+    // console.log('error.error: ' + error.error);
+    // console.log('error.error.message: ' + error.error.message);
     this.helloMessageFromService = error.error.message;
   }
 
