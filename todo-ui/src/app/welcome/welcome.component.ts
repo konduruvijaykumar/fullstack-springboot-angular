@@ -5,7 +5,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HelloDataService } from '../service/data/hello-data.service';
+import { HelloDataService, Hello } from '../service/data/hello-data.service';
 
 // We can import classes written by us also here.
 // import {AppComponent} from '../app.component';
@@ -30,6 +30,7 @@ export class WelcomeComponent implements OnInit {
   message = 'Some Message';
   // message1:string = 'Some Message'; // Using via strong type reference
   name = '';
+  helloMessageFromService: string;
 
   // Here there can be member or local variables inside methods, member variables in methods should be accessed via this keyword
   // Like java constructor
@@ -55,7 +56,17 @@ export class WelcomeComponent implements OnInit {
   getHelloMessage() {
     // console.log('Welcom service');
     // console.log(this.helloDataService.callHelloMessageWebService());
-    this.helloDataService.callHelloMessageWebService().subscribe();
+    this.helloDataService.callHelloMessageWebService().subscribe(
+      response => this.getSuccessResponse(response)
+    );
+
+    // console.log('End of function getHelloMessage()'); // Since async you will this before response comes
+  }
+
+  getSuccessResponse(response: Hello) {
+    // console.log(response);
+    // console.log(response.message);
+    this.helloMessageFromService = response.message;
   }
 
 }

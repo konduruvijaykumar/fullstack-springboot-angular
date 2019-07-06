@@ -7,3 +7,8 @@
   Click here to get custom message from webservice
   <button (click)="getHelloMessage()" class="btn btn-success">Get Message</button>
 </div>
+
+<div class="container" *ngIf="helloMessageFromService">
+  <h3>Your custom message from webservice is</h3>
+  {{helloMessageFromService}}
+</div>

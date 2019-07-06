@@ -10,7 +10,12 @@ export class HelloDataService {
 
   callHelloMessageWebService() {
     // console.log('Call to backend service');
-    return this.httpClient.get('http://localhost:8080/hello-bean');
+    return this.httpClient.get<Hello>('http://localhost:8080/hello-bean');
   }
 
+}
+
+export class Hello {
+  constructor(public message: string) {
+  }
 }
