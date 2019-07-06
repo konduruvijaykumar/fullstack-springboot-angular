@@ -5,6 +5,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HelloDataService, Hello } from '../service/data/hello-data.service';
 
 // We can import classes written by us also here.
 // import {AppComponent} from '../app.component';
@@ -29,12 +30,13 @@ export class WelcomeComponent implements OnInit {
   message = 'Some Message';
   // message1:string = 'Some Message'; // Using via strong type reference
   name = '';
+  helloMessageFromService: string;
 
   // Here there can be member or local variables inside methods, member variables in methods should be accessed via this keyword
   // Like java constructor
   // public TodoApplication() {..}
   // Dependency injection
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private helloDataService: HelloDataService) { }
 
   // Implement interface method, java it would be void init() {..}
   ngOnInit() {
@@ -50,6 +52,41 @@ export class WelcomeComponent implements OnInit {
   // also possible to used return type here using
   // ngOnInit() : void{
   // }
+
+  getHelloMessage() {
+    // console.log('Welcom service');
+    // console.log(this.helloDataService.callHelloMessageWebService());
+    this.helloDataService.callHelloMessageWebService().subscribe(
+      response => this.getSuccessResponse(response),
+      error => this.handleErrorResponse(error)
+    );
+
+    // console.log('End of function getHelloMessage()'); // Since async you will this before response comes
+  }
+
+  getHelloMessagePathVariableService() {
+    // console.log('Welcom service');
+    // console.log(this.helloDataService.callHelloMessageWebService());
+    this.helloDataService.callHelloPathVariableService(this.name).subscribe(
+      response => this.getSuccessResponse(response),
+      error => this.handleErrorResponse(error)
+    );
+
+    // console.log('End of function getHelloMessage()'); // Since async you will this before response comes
+  }
+
+  handleErrorResponse(error: any): void {
+    // console.log('error: ' + error);
+    // console.log('error.error: ' + error.error);
+    // console.log('error.error.message: ' + error.error.message);
+    this.helloMessageFromService = error.error.message;
+  }
+
+  getSuccessResponse(response: Hello) {
+    // console.log(response);
+    // console.log(response.message);
+    this.helloMessageFromService = response.message;
+  }
 
 }
 
