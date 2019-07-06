@@ -21,7 +21,8 @@ export class ListTodosComponent implements OnInit {
   ngOnInit() {
     this.todoDataService.getAllTodos('vijay').subscribe(
       response => {
-        console.log(response);
+        // console.log(response);
+        this.todos = response;
       }
     );
   }
