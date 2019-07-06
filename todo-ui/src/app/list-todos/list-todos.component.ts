@@ -27,6 +27,10 @@ export class ListTodosComponent implements OnInit {
     );
   }
 
+  deleteTodo(id: number) {
+    console.log('id : ' + id);
+  }
+
 }
 
 export class Todo {
