@@ -5,6 +5,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HelloDataService } from '../service/data/hello-data.service';
 
 // We can import classes written by us also here.
 // import {AppComponent} from '../app.component';
@@ -34,7 +35,7 @@ export class WelcomeComponent implements OnInit {
   // Like java constructor
   // public TodoApplication() {..}
   // Dependency injection
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private helloDataService: HelloDataService) { }
 
   // Implement interface method, java it would be void init() {..}
   ngOnInit() {
@@ -52,7 +53,8 @@ export class WelcomeComponent implements OnInit {
   // }
 
   getHelloMessage() {
-    console.log('Welcom service');
+    // console.log('Welcom service');
+    console.log(this.helloDataService.callHelloMessageWebService());
   }
 
 }
