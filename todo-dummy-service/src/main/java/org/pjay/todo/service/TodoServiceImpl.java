@@ -53,4 +53,19 @@ public class TodoServiceImpl implements TodoService {
 		return null;
 	}
 
+	@Override
+	public Todo saveTodo(Todo todo) {
+		if (null == todo.getId() || -1 == todo.getId() || 0 == todo.getId()) {
+			// Need to revisit if logic, null check should be good if you don't pass value
+			// Create Todo
+			todo.setId(++counter);
+			todos.add(todo);
+		} else {
+			// Update Todo
+			deleteTodoById(todo.getId());
+			todos.add(todo);
+		}
+		return todo;
+	}
+
 }
