@@ -34,4 +34,14 @@ export class TodoComponent implements OnInit {
     );
   }
 
+  saveTodo() {
+    const user = sessionStorage.getItem('authenticatedUser');
+    this.todoDataService.updateTodo(user, this.id, this.todo).subscribe(
+      response => {
+        console.log(response);
+        this.todo = response;
+      }
+    );
+  }
+
 }
