@@ -43,6 +43,7 @@ public class TodoServiceImpl implements TodoService {
 	}
 
 	// We will make it public so that it can be reused for fetch by id
+	@Override
 	public Todo findById(Long id) {
 		Optional<Todo> optionalTodo = todos.stream()
 				.filter(todoObj -> (Objects.nonNull(todoObj) && id == todoObj.getId())).findFirst();
