@@ -19,4 +19,6 @@ public interface TodoService {
 
 	Todo findById(Long id);
 
+	Todo saveTodo(Todo todo);
+
 }

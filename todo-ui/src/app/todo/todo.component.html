@@ -3,11 +3,15 @@
 <div class="container">
   <fieldset class="form-group">
     <label>Description</label>
-    <input type="text" class="form-control" name="description" required>
+    <input type="text" [(ngModel)]="todo.description" class="form-control" name="description" required>
   </fieldset>
   <fieldset class="form-group">
       <label>Target Date</label>
-      <input type="date" class="form-control" name="targetDate" required>
+      <!-- [(ngModel)] is a combination of property binding and event change binding, we can split them as two shown below -->
+      <input type="date"
+      [ngModel]="todo.targetDate | date: 'yyyy-MM-dd'"
+      (ngModelChange)="todo.targetDate = $event"
+      class="form-control" name="targetDate" required>
   </fieldset>
   <button class="btn btn-success" (click)="saveTodo()">Save</button>
 </div>
