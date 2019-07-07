@@ -22,10 +22,14 @@ export class TodoComponent implements OnInit {
 
   getTodo() {
     const user = sessionStorage.getItem('authenticatedUser');
+    // The problem issue - "Cannot read property 'description' of undefined" is async load of data.
+    // We with fix it eith empty todo object for now. So that the user experience is not going bad.
+    // This emplty data will not be shown, unless the webservice call takes long time to load data.
+    this.todo = new Todo(0, '', false, new Date());
     this.todoDataService.fetchTodo(user, this.id).subscribe(
       response => {
         this.todo = response;
-        console.log(this.todo);
+        // console.log(this.todo);
       }
     );
   }
