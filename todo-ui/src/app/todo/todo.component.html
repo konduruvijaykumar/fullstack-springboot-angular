@@ -2,13 +2,18 @@
 
 <div class="container">
   <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">Enter valid values</div>
+  <!-- Below are possibility for different validations, might not be used for all cases. Please remove if not required -->
+  <div class="alert alert-warning" *ngIf="todoForm.dirty && description.invalid">Enter Description</div>
+  <div class="alert alert-warning" *ngIf="todoForm.dirty && targetDate.invalid">Enter Target Date</div>
+
   <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm">
     <!-- Adding functionality to save on hit of enter button in form -->
     <!-- Template (todoForm) created for entire form using #todoForm="ngForm" -->
     <!-- This does not allow from submittion of form for required input fields, if data is not added to that fields -->
     <fieldset class="form-group">
       <label>Description</label>
-      <input type="text" [(ngModel)]="todo.description" class="form-control" name="description" required minlength="5">
+      <input type="text" [(ngModel)]="todo.description" class="form-control"
+      name="description" required minlength="5" #description="ngModel">
     </fieldset>
     <fieldset class="form-group">
         <label>Target Date</label>
@@ -16,7 +21,7 @@
         <input type="date"
         [ngModel]="todo.targetDate | date: 'yyyy-MM-dd'"
         (ngModelChange)="todo.targetDate = $event"
-        class="form-control" name="targetDate" required>
+        class="form-control" name="targetDate" required #targetDate="ngModel">
     </fieldset>
     <button class="btn btn-success" type="submit">Save</button>
   </form>
