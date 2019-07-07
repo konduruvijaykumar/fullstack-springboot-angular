@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../service/data/todo-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-todos',
@@ -15,16 +16,40 @@ export class ListTodosComponent implements OnInit {
   // ];
 
   todos: Todo[];
+  message: string;
 
-  constructor(private todoDataService: TodoDataService) { }
+  constructor(private todoDataService: TodoDataService, private router: Router) { }
 
   ngOnInit() {
-    this.todoDataService.getAllTodos('vijay').subscribe(
+    this.refreshTodos();
+  }
+
+  refreshTodos() {
+    const username = (sessionStorage.getItem('authenticatedUser') === null) ? '' : sessionStorage.getItem('authenticatedUser');
+    this.todoDataService.getAllTodos(username).subscribe(
       response => {
         // console.log(response);
         this.todos = response;
       }
     );
+  }
+
+  deleteTodo(id: number) {
+    // console.log('id : ' + id);
+    const username = (sessionStorage.getItem('authenticatedUser') === null) ? '' : sessionStorage.getItem('authenticatedUser');
+    // console.log(this.todoDataService.deleteTodo(username, id));
+    this.todoDataService.deleteTodo(username, id).subscribe(
+      response => {
+        // console.log(response);
+        this.message = `Delete Of Todo With Id ${id} Successful`;
+        this.refreshTodos();
+      }
+    );
+  }
+
+  updateTodo(id: number) {
+    // console.log('id : ' + id);
+    this.router.navigate(['todos', id]);
   }
 
 }
