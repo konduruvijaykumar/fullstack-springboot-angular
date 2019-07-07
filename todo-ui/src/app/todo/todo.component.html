@@ -1,22 +1,23 @@
 <h1>Todo</h1>
 
-<form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm">
-  <!-- Adding functionality to save on hit of enter button in form -->
-  <!-- Template (todoForm) created for entire form using #todoForm="ngForm" -->
-  <!-- This does not allow from submittion of form for required input fields, if data is not added to that fields -->
-    <div class="container">
-        <fieldset class="form-group">
-          <label>Description</label>
-          <input type="text" [(ngModel)]="todo.description" class="form-control" name="description" required>
-        </fieldset>
-        <fieldset class="form-group">
-            <label>Target Date</label>
-            <!-- [(ngModel)] is a combination of property binding and event change binding, we can split them as two shown below -->
-            <input type="date"
-            [ngModel]="todo.targetDate | date: 'yyyy-MM-dd'"
-            (ngModelChange)="todo.targetDate = $event"
-            class="form-control" name="targetDate" required>
-        </fieldset>
-        <button class="btn btn-success" type="submit">Save</button>
-      </div>
-</form>
+<div class="container">
+  <div class="alert alert-warning" *ngIf="todoForm.dirty && todoForm.invalid">Enter valid values</div>
+  <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm">
+    <!-- Adding functionality to save on hit of enter button in form -->
+    <!-- Template (todoForm) created for entire form using #todoForm="ngForm" -->
+    <!-- This does not allow from submittion of form for required input fields, if data is not added to that fields -->
+    <fieldset class="form-group">
+      <label>Description</label>
+      <input type="text" [(ngModel)]="todo.description" class="form-control" name="description" required minlength="5">
+    </fieldset>
+    <fieldset class="form-group">
+        <label>Target Date</label>
+        <!-- [(ngModel)] is a combination of property binding and event change binding, we can split them as two shown below -->
+        <input type="date"
+        [ngModel]="todo.targetDate | date: 'yyyy-MM-dd'"
+        (ngModelChange)="todo.targetDate = $event"
+        class="form-control" name="targetDate" required>
+    </fieldset>
+    <button class="btn btn-success" type="submit">Save</button>
+  </form>
+</div>
