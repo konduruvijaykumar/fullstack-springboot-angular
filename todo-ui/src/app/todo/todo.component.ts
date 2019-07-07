@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../service/data/todo-data.service';
 import { Todo } from '../list-todos/list-todos.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -13,11 +13,18 @@ export class TodoComponent implements OnInit {
   id: number;
   todo: Todo;
 
-  constructor(private todoDataService: TodoDataService, private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private todoDataService: TodoDataService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+    ) {}
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.params.id;
-    this.getTodo();
+    this.todo = new Todo(this.id, '', false, new Date());
+    if (this.id >= 0) {
+      this.getTodo();
+    }
   }
 
   getTodo() {
@@ -25,13 +32,39 @@ export class TodoComponent implements OnInit {
     // The problem issue - "Cannot read property 'description' of undefined" is async load of data.
     // We with fix it eith empty todo object for now. So that the user experience is not going bad.
     // This emplty data will not be shown, unless the webservice call takes long time to load data.
-    this.todo = new Todo(0, '', false, new Date());
     this.todoDataService.fetchTodo(user, this.id).subscribe(
       response => {
-        this.todo = response;
+        if (response) {
+          this.todo = response;
+        } else {
+          // Reset if data is not present for a id from service, when url is chaged and loaded
+          this.id = -1;
+          this.todo.id = this.id;
+        }
         // console.log(this.todo);
       }
     );
+  }
+
+  saveTodo() {
+    const user = sessionStorage.getItem('authenticatedUser');
+    if (this.id >= 0) {
+      this.todoDataService.updateTodo(user, this.id, this.todo).subscribe(
+        response => {
+          // console.log(response);
+          this.todo = response;
+          this.router.navigate(['todos']);
+        }
+      );
+    } else {
+      // Create todo
+      this.todoDataService.createTodo(user, this.todo).subscribe(
+        response => {
+          // console.log(response);
+          this.router.navigate(['todos']);
+        }
+      );
+    }
   }
 
 }
