@@ -36,7 +36,8 @@ public class TodoServiceImpl implements TodoService {
 	@Override
 	public Todo deleteTodoById(Long id) {
 		Todo todo = findById(id);
-		if (null != todo && todos.remove(todo)) {
+		if (null != todo) {
+			todos.remove(todo);
 			return todo;
 		}
 		return null;
@@ -55,7 +56,7 @@ public class TodoServiceImpl implements TodoService {
 
 	@Override
 	public Todo saveTodo(Todo todo) {
-		if (null == todo.getId() || -1 == todo.getId() || 0 == todo.getId()) {
+		if (null == todo.getId() || todo.getId() < 0) {
 			// Need to revisit if logic, null check should be good if you don't pass value
 			// Create Todo
 			todo.setId(++counter);
