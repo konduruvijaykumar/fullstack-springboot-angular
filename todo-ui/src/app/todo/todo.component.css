@@ -1,0 +1,4 @@
+.ng-invalid:not(form) {
+  /* border: 1px solid red; */
+  border-left: 4px solid red;
+}
