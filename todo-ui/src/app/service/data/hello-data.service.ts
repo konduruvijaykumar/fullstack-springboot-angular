@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AppConstants } from 'src/app/app-constants';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class HelloDataService {
 
   callHelloMessageWebService() {
     // console.log('Call to backend service');
-    return this.httpClient.get<Hello>('http://localhost:8080/hello-bean');
+    return this.httpClient.get<Hello>(`${AppConstants.API_ENDPOINT}/hello-bean`);
   }
 
   // Note: After adding form based and basic auth to spring rest service resources, we will not be able to get data.
@@ -25,8 +26,8 @@ export class HelloDataService {
     //   Authorization: basicAuthHeaderString
     // });
     // When passing headers with differnt name object like header, then use {headers: header}. If the name is headers then use {headers}.
-    // return this.httpClient.get<Hello>(`http://localhost:8080/hello-path-param/${name}`, {headers});
-    return this.httpClient.get<Hello>(`http://localhost:8080/hello-path-param/${name}`);
+    // return this.httpClient.get<Hello>(`${AppConstants.API_ENDPOINT}/hello-path-param/${name}`, {headers});
+    return this.httpClient.get<Hello>(`${AppConstants.API_ENDPOINT}/hello-path-param/${name}`);
   }
 
   // createBasicAuthenticationHttpHeader() {
