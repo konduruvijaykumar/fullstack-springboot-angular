@@ -19,20 +19,22 @@ export class HelloDataService {
   callHelloPathVariableService(name: string) {
     // The below quotes are not single quotes, they are actually backtick or backquote
     // Available below esc button. This allows to use variables
-    const basicAuthHeaderString = this.createBasicAuthenticationHttpHeader();
-    const headers = new HttpHeaders({
-      Authorization: basicAuthHeaderString
-    });
+    // Interceptor will take care of this, hardcoding will be removed
+    // const basicAuthHeaderString = this.createBasicAuthenticationHttpHeader();
+    // const headers = new HttpHeaders({
+    //   Authorization: basicAuthHeaderString
+    // });
     // When passing headers with differnt name object like header, then use {headers: header}. If the name is headers then use {headers}.
-    return this.httpClient.get<Hello>(`http://localhost:8080/hello-path-param/${name}`, {headers});
+    // return this.httpClient.get<Hello>(`http://localhost:8080/hello-path-param/${name}`, {headers});
+    return this.httpClient.get<Hello>(`http://localhost:8080/hello-path-param/${name}`);
   }
 
-  createBasicAuthenticationHttpHeader() {
-    const username = 'vijay';
-    const password = 'password';
-    const basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
-    return basicAuthHeaderString;
-  }
+  // createBasicAuthenticationHttpHeader() {
+  //   const username = 'vijay';
+  //   const password = 'password';
+  //   const basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
+  //   return basicAuthHeaderString;
+  // }
 
 }
 

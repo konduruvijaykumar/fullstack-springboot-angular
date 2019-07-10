@@ -19,10 +19,21 @@ export class BasicAuthenticationService {
       map(
         response => {
           sessionStorage.setItem('authenticatedUser', username);
+          sessionStorage.setItem('basicAuthToken', basicAuthHeaderString);
           return response;
         }
       )
     );
+  }
+
+  getAuthenticatedUser() {
+    return sessionStorage.getItem('authenticatedUser');
+  }
+
+  getAuthenticatedBasicAuthToken() {
+    if (sessionStorage.getItem('basicAuthToken')) {
+      return sessionStorage.getItem('basicAuthToken');
+    }
   }
 
   isUserLoggedIn() {
