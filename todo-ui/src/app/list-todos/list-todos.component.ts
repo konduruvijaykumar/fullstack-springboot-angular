@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../service/data/todo-data.service';
 import { Router } from '@angular/router';
+import { AppConstants } from '../app-constants';
 
 @Component({
   selector: 'app-list-todos',
@@ -25,7 +26,9 @@ export class ListTodosComponent implements OnInit {
   }
 
   refreshTodos() {
-    const username = (sessionStorage.getItem('authenticatedUser') === null) ? '' : sessionStorage.getItem('authenticatedUser');
+    const username =
+    (sessionStorage.getItem(AppConstants.AUTHENTICATED_USER) === null) ? '' : sessionStorage.getItem(AppConstants.AUTHENTICATED_USER);
+
     this.todoDataService.getAllTodos(username).subscribe(
       response => {
         // console.log(response);
@@ -36,7 +39,9 @@ export class ListTodosComponent implements OnInit {
 
   deleteTodo(id: number) {
     // console.log('id : ' + id);
-    const username = (sessionStorage.getItem('authenticatedUser') === null) ? '' : sessionStorage.getItem('authenticatedUser');
+    const username =
+    (sessionStorage.getItem(AppConstants.AUTHENTICATED_USER) === null) ? '' : sessionStorage.getItem(AppConstants.AUTHENTICATED_USER);
+
     // console.log(this.todoDataService.deleteTodo(username, id));
     this.todoDataService.deleteTodo(username, id).subscribe(
       response => {

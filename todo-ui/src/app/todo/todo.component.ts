@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../service/data/todo-data.service';
 import { Todo } from '../list-todos/list-todos.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppConstants } from '../app-constants';
 
 @Component({
   selector: 'app-todo',
@@ -28,7 +29,7 @@ export class TodoComponent implements OnInit {
   }
 
   getTodo() {
-    const user = sessionStorage.getItem('authenticatedUser');
+    const user = sessionStorage.getItem(AppConstants.AUTHENTICATED_USER);
     // The problem issue - "Cannot read property 'description' of undefined" is async load of data.
     // We with fix it eith empty todo object for now. So that the user experience is not going bad.
     // This emplty data will not be shown, unless the webservice call takes long time to load data.
@@ -47,7 +48,7 @@ export class TodoComponent implements OnInit {
   }
 
   saveTodo() {
-    const user = sessionStorage.getItem('authenticatedUser');
+    const user = sessionStorage.getItem(AppConstants.AUTHENTICATED_USER);
     if (this.id >= 0) {
       this.todoDataService.updateTodo(user, this.id, this.todo).subscribe(
         response => {
