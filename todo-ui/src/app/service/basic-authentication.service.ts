@@ -20,7 +20,7 @@ export class BasicAuthenticationService {
       map(
         response => {
           sessionStorage.setItem(AppConstants.AUTHENTICATED_USER, username);
-          sessionStorage.setItem(AppConstants.BASIC_AUTH_TOKEN, basicAuthHeaderString);
+          sessionStorage.setItem(AppConstants.AUTH_TOKEN, basicAuthHeaderString);
           return response;
         }
       )
@@ -32,8 +32,8 @@ export class BasicAuthenticationService {
   }
 
   getAuthenticatedBasicAuthToken() {
-    if (sessionStorage.getItem(AppConstants.BASIC_AUTH_TOKEN)) {
-      return sessionStorage.getItem(AppConstants.BASIC_AUTH_TOKEN);
+    if (sessionStorage.getItem(AppConstants.AUTH_TOKEN)) {
+      return sessionStorage.getItem(AppConstants.AUTH_TOKEN);
     }
   }
 

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LocalAuthenticationService } from '../service/local-authentication.service';
 import { BasicAuthenticationService } from '../service/basic-authentication.service';
 import { AppConstants } from '../app-constants';
+import { JwtAuthenticationService } from '../service/jwt-authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private localAuthenticationService: LocalAuthenticationService,
-    private basicAuthenticationService: BasicAuthenticationService
+    private basicAuthenticationService: BasicAuthenticationService,
+    private jwtAuthenticationService: JwtAuthenticationService
     ) { }
 
   ngOnInit() {
@@ -44,13 +46,28 @@ export class LoginComponent implements OnInit {
   handleBasicAuthLogin() {
     this.basicAuthenticationService.callBasicAuthService(this.username, this.password).subscribe(
       response => {
-        console.log(response);
+        // console.log(response);
         // sessionStorage.setItem(AppConstants.AUTHENTICATED_USER, this.username);
         this.invalidLogin = false;
         this.router.navigate(['welcome', this.username]);
       },
       error => {
-        console.log(error);
+        // console.log(error);
+        this.invalidLogin = true;
+      }
+    );
+  }
+
+  handleJWTAuthLogin() {
+    this.jwtAuthenticationService.callJWTAuthService(this.username, this.password).subscribe(
+      response => {
+        // console.log(response);
+        // sessionStorage.setItem(AppConstants.AUTHENTICATED_USER, this.username);
+        this.invalidLogin = false;
+        this.router.navigate(['welcome', this.username]);
+      },
+      error => {
+        // console.log(error);
         this.invalidLogin = true;
       }
     );

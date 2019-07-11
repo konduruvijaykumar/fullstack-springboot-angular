@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalAuthenticationService } from '../service/local-authentication.service';
+import { JwtAuthenticationService } from '../service/jwt-authentication.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +11,10 @@ export class MenuComponent implements OnInit {
 
   // isUserLoggedIn = false;
 
-  constructor(private localAuthenticationService: LocalAuthenticationService) { }
+  constructor(
+    private localAuthenticationService: LocalAuthenticationService,
+    private jwtAuthenticationService: JwtAuthenticationService
+    ) { }
 
   ngOnInit() {
     // this.isUserLoggedIn = this.localAuthenticationService.isUserLoggedIn();
