@@ -1,0 +1,12 @@
+https://jwt.io/introduction/
+https://dzone.com/articles/spring-boot-security-json-web-tokenjwt-hello-world
+https://www.javainuse.com/spring/jwt
+https://www.javainuse.com/spring/boot-jwt
+https://www.javainuse.com/spring/boot-jwt-mysql
+https://github.com/in28minutes/spring-boot-angular-fullstack-examples/blob/56ce5427811bbbff05a4cfc36dd202fbe9ee0314/spring-boot-jwt-auth-login-logout/all-code.md
+https://github.com/in28minutes/spring-boot-angular-fullstack-examples
+https://github.com/in28minutes/spring-boot-angular-fullstack-examples/tree/master/spring-boot-jwt-auth-login-logout/backend-spring-boot-jwt-auth-login-logout
+https://auth0.com/blog/implementing-jwt-authentication-on-spring-boot/
+https://www.callicoder.com/series/spring-security-react/
+
+https://github.com/hantsy/springboot-jwt-sample

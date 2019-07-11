@@ -1,0 +1,22 @@
+/**
+ * 
+ */
+package org.pjay.todo;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+/**
+ * @author vijayk
+ *
+ */
+public class TestBcrypt {
+	
+	public static void main(String[] args) {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		for(int i = 1; i <= 10 ; i++) {
+			// System.out.println(bCryptPasswordEncoder.encode("password"));
+			System.out.println(bCryptPasswordEncoder.encode("password@123"));
+		}
+	}
+
+}
