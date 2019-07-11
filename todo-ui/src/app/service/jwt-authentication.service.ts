@@ -6,21 +6,18 @@ import { AppConstants } from '../app-constants';
 @Injectable({
   providedIn: 'root'
 })
-export class BasicAuthenticationService {
+export class JwtAuthenticationService {
 
   constructor(private httpClient: HttpClient) { }
 
-  callBasicAuthService(username: string, password: string) {
-    const basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
-    const headers = new HttpHeaders({
-      Authorization: basicAuthHeaderString
-    });
-    // When passing headers with differnt name object like header, then use {headers: header}. If the name is headers then use {headers}.
-    return this.httpClient.get<AuthenticationBean>(`${AppConstants.API_ENDPOINT}/basicauth`, {headers}).pipe(
+  callJWTAuthService(username: string, password: string) {
+    // When parameters match with names of properties to be sent post payload. (Example: {username, password})
+    // Then it will autmatically create payload with the same key value pairs, example below or craete object and pass
+    return this.httpClient.post<JWTToken>(`${AppConstants.API_ENDPOINT}/authenticate`, {username, password}).pipe(
       map(
         response => {
           sessionStorage.setItem(AppConstants.AUTHENTICATED_USER, username);
-          sessionStorage.setItem(AppConstants.AUTH_TOKEN, basicAuthHeaderString);
+          sessionStorage.setItem(AppConstants.AUTH_TOKEN, `Bearer ${response.jwttoken}`);
           return response;
         }
       )
@@ -31,7 +28,7 @@ export class BasicAuthenticationService {
     return sessionStorage.getItem(AppConstants.AUTHENTICATED_USER);
   }
 
-  getAuthenticatedBasicAuthToken() {
+  getAuthenticatedJWTAuthToken() {
     if (sessionStorage.getItem(AppConstants.AUTH_TOKEN)) {
       return sessionStorage.getItem(AppConstants.AUTH_TOKEN);
     }
@@ -48,6 +45,6 @@ export class BasicAuthenticationService {
 
 }
 
-export class AuthenticationBean {
-  constructor(public message: string) {}
+export class JWTToken {
+  constructor(public jwttoken: string) {}
 }

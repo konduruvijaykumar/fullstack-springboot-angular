@@ -5,6 +5,6 @@ export class AppConstants {
 
   public static API_ENDPOINT = 'http://localhost:8080';
   public static AUTHENTICATED_USER = 'authenticatedUser';
-  public static BASIC_AUTH_TOKEN = 'basicAuthToken';
+  public static AUTH_TOKEN = 'token';
 
 }

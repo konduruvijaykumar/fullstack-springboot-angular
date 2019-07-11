@@ -4,13 +4,13 @@
       <a href="https://github.com/konduruvijaykumar" class="navbar-brand">Vijay</a>
     </div>
     <ul class="navbar-nav">
-      <li><a [routerLink]="['/welcome/vijay']" class="nav-link" *ngIf="localAuthenticationService.isUserLoggedIn()">Home</a></li>
-      <li><a [routerLink]="['/todos']" class="nav-link" *ngIf="localAuthenticationService.isUserLoggedIn()">Todos</a></li>
+      <li><a [routerLink]="['/welcome/vijay']" class="nav-link" *ngIf="jwtAuthenticationService.isUserLoggedIn()">Home</a></li>
+      <li><a [routerLink]="['/todos']" class="nav-link" *ngIf="jwtAuthenticationService.isUserLoggedIn()">Todos</a></li>
     </ul>
 
     <ul class="navbar-nav navbar-collapse justify-content-end">
-      <li><a [routerLink]="['/login']" class="nav-link" *ngIf="!localAuthenticationService.isUserLoggedIn()">Login</a></li>
-      <li><a [routerLink]="['/logout']" class="nav-link" *ngIf="localAuthenticationService.isUserLoggedIn()">Logout</a></li>
+      <li><a [routerLink]="['/login']" class="nav-link" *ngIf="!jwtAuthenticationService.isUserLoggedIn()">Login</a></li>
+      <li><a [routerLink]="['/logout']" class="nav-link" *ngIf="jwtAuthenticationService.isUserLoggedIn()">Logout</a></li>
     </ul>
   </nav>
 </header>
