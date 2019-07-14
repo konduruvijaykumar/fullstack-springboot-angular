@@ -11,9 +11,9 @@ import { AppConstants } from '../app-constants';
 export class ListTodosComponent implements OnInit {
 
   // todos = [
-  //   new Todo(1, 'Learn Angular 7', false, new Date()),
-  //   new Todo(2, 'Become an expert in Java', false, new Date()),
-  //   new Todo(3, 'Learn Kubernetes', false, new Date())
+  //   new Todo(1, 'vijay', 'Learn Angular 7', false, new Date()),
+  //   new Todo(2, 'vijay', 'Become an expert in Java', false, new Date()),
+  //   new Todo(3, 'vijay', 'Learn Kubernetes', false, new Date())
   // ];
 
   todos: Todo[];
@@ -68,6 +68,7 @@ export class Todo {
   // public should be used as it is not getting shown in UI.
   constructor(
     public id: number,
+    public username: string,
     public description: string,
     public done: boolean,
     public targetDate: Date

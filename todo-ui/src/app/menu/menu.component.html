@@ -4,7 +4,8 @@
       <a href="https://github.com/konduruvijaykumar" class="navbar-brand">Vijay</a>
     </div>
     <ul class="navbar-nav">
-      <li><a [routerLink]="['/welcome/vijay']" class="nav-link" *ngIf="jwtAuthenticationService.isUserLoggedIn()">Home</a></li>
+      <!-- <li><a [routerLink]="['/welcome/vijay']" class="nav-link" *ngIf="jwtAuthenticationService.isUserLoggedIn()">Home</a></li> -->
+      <li><a [routerLink]="['/welcome', jwtAuthenticationService.getAuthenticatedUser()]" class="nav-link" *ngIf="jwtAuthenticationService.isUserLoggedIn()">Home</a></li>
       <li><a [routerLink]="['/todos']" class="nav-link" *ngIf="jwtAuthenticationService.isUserLoggedIn()">Todos</a></li>
     </ul>
 
