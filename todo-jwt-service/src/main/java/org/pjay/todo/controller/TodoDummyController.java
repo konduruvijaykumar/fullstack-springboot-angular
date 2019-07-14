@@ -7,7 +7,7 @@ import java.net.URI;
 import java.util.List;
 
 import org.pjay.todo.model.Todo;
-import org.pjay.todo.service.TodoService;
+import org.pjay.todo.service.TodoDummyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,24 +27,24 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
  */
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class TodoController {
+public class TodoDummyController {
 
 	@Autowired
-	TodoService todoService;
+	TodoDummyService todoDummyService;
 
 	@GetMapping("/users/{username}/todos")
 	public List<Todo> getAllTodos(@PathVariable String username) {
-		return todoService.getAllTodos(username);
+		return todoDummyService.getAllTodos(username);
 	}
 
 	@GetMapping("/users/{username}/todos/{id}")
 	public Todo getTodo(@PathVariable String username, @PathVariable Long id) {
-		return todoService.findById(id);
+		return todoDummyService.findById(id);
 	}
 
 	@DeleteMapping("/users/{username}/todos/{id}")
 	public ResponseEntity<Void> deleteTodo(@PathVariable String username, @PathVariable Long id) {
-		Todo todo = todoService.deleteTodoById(id);
+		Todo todo = todoDummyService.deleteTodoById(id);
 		if (null != todo) {
 			return ResponseEntity.noContent().build();
 		}
@@ -54,13 +54,13 @@ public class TodoController {
 	@PutMapping("/users/{username}/todos/{id}")
 	public ResponseEntity<Todo> updateTodo(@RequestBody Todo todo, @PathVariable String username,
 			@PathVariable Long id) {
-		Todo updatedTodo = todoService.saveTodo(todo);
+		Todo updatedTodo = todoDummyService.saveTodo(todo);
 		return new ResponseEntity<>(updatedTodo, HttpStatus.OK);
 	}
 
 	@PostMapping("/users/{username}/todos")
 	public ResponseEntity<Void> createTodo(@RequestBody Todo todo, @PathVariable String username) {
-		Todo createdTodo = todoService.saveTodo(todo);
+		Todo createdTodo = todoDummyService.saveTodo(todo);
 		/*
 		 * Better practice in creating resource in Rest API, is to provide the URI to
 		 * the resource created. The full URI will be sent in headers Example:
