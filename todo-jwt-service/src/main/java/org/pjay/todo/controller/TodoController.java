@@ -7,7 +7,7 @@ import java.net.URI;
 import java.util.List;
 
 import org.pjay.todo.model.Todo;
-import org.pjay.todo.service.TodoDummyService;
+import org.pjay.todo.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,40 +27,40 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
  */
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class TodoDummyController {
+public class TodoController {
 
 	@Autowired
-	TodoDummyService todoDummyService;
+	TodoService todoService;
 
-	@GetMapping("/dummy/users/{username}/todos")
+	@GetMapping("/users/{username}/todos")
 	public List<Todo> getAllTodos(@PathVariable String username) {
-		return todoDummyService.getAllTodos(username);
+		return todoService.getAllTodos(username);
 	}
 
-	@GetMapping("/dummy/users/{username}/todos/{id}")
+	@GetMapping("/users/{username}/todos/{id}")
 	public Todo getTodo(@PathVariable String username, @PathVariable Long id) {
-		return todoDummyService.findById(id);
+		return todoService.findById(id);
 	}
 
-	@DeleteMapping("/dummy/users/{username}/todos/{id}")
+	@DeleteMapping("/users/{username}/todos/{id}")
 	public ResponseEntity<Void> deleteTodo(@PathVariable String username, @PathVariable Long id) {
-		Todo todo = todoDummyService.deleteTodoById(id);
+		Todo todo = todoService.deleteTodoById(id);
 		if (null != todo) {
 			return ResponseEntity.noContent().build();
 		}
 		return ResponseEntity.notFound().build();
 	}
 
-	@PutMapping("/dummy/users/{username}/todos/{id}")
+	@PutMapping("/users/{username}/todos/{id}")
 	public ResponseEntity<Todo> updateTodo(@RequestBody Todo todo, @PathVariable String username,
 			@PathVariable Long id) {
-		Todo updatedTodo = todoDummyService.saveTodo(todo);
+		Todo updatedTodo = todoService.saveTodo(todo);
 		return new ResponseEntity<>(updatedTodo, HttpStatus.OK);
 	}
 
-	@PostMapping("/dummy/users/{username}/todos")
+	@PostMapping("/users/{username}/todos")
 	public ResponseEntity<Void> createTodo(@RequestBody Todo todo, @PathVariable String username) {
-		Todo createdTodo = todoDummyService.saveTodo(todo);
+		Todo createdTodo = todoService.saveTodo(todo);
 		/*
 		 * Better practice in creating resource in Rest API, is to provide the URI to
 		 * the resource created. The full URI will be sent in headers Example:

@@ -15,6 +15,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Component
+// We will try to use the same dto class as entity class to complete the project quickly
+// Better practice is to write separate classes and use converters to transform to different objects 
 public class Todo {
 
 	private Long id;
