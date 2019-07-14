@@ -39,11 +39,13 @@ public class TodoController {
 
 	@GetMapping("/users/{username}/todos/{id}")
 	public Todo getTodo(@PathVariable String username, @PathVariable Long id) {
+		// We don't need to find by user and id, as id is unique we will the correct record. Data jpa method is added in repository for both param's
 		return todoService.findById(id);
 	}
 
 	@DeleteMapping("/users/{username}/todos/{id}")
 	public ResponseEntity<Void> deleteTodo(@PathVariable String username, @PathVariable Long id) {
+		// We don't need to delete by user and id, as id is unique we will delete correct record. Data jpa method is added in repository for both param's
 		Todo todo = todoService.deleteTodoById(id);
 		if (null != todo) {
 			return ResponseEntity.noContent().build();
@@ -54,12 +56,14 @@ public class TodoController {
 	@PutMapping("/users/{username}/todos/{id}")
 	public ResponseEntity<Todo> updateTodo(@RequestBody Todo todo, @PathVariable String username,
 			@PathVariable Long id) {
+		// As we fetch todo object and save, no need passing all other parameters and todo object has unique is
 		Todo updatedTodo = todoService.saveTodo(todo);
 		return new ResponseEntity<>(updatedTodo, HttpStatus.OK);
 	}
 
 	@PostMapping("/users/{username}/todos")
 	public ResponseEntity<Void> createTodo(@RequestBody Todo todo, @PathVariable String username) {
+		// As we fetch todo object and save, no need passing all other parameters and todo object has unique is
 		Todo createdTodo = todoService.saveTodo(todo);
 		/*
 		 * Better practice in creating resource in Rest API, is to provide the URI to

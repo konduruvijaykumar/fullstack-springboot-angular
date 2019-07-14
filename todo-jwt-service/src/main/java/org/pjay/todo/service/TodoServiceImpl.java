@@ -3,13 +3,12 @@
  */
 package org.pjay.todo.service;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import org.pjay.todo.model.Todo;
+import org.pjay.todo.repository.TodoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,26 +18,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class TodoServiceImpl implements TodoService {
 
-	private static List<Todo> todos = new ArrayList<>();
-	private static long counter = 0;
-
-	static {
-		todos.add(new Todo(++counter, "vijay", "Learn Angular 7", new Date(), false));
-		todos.add(new Todo(++counter, "vijay", "Become an expert in Java", new Date(), false));
-		todos.add(new Todo(++counter, "vijay", "Learn Kubernetes", new Date(), false));
-	}
+	@Autowired
+	TodoRepository repository;
 
 	@Override
 	public List<Todo> getAllTodos(String username) {
-		return todos;
+		return repository.findByUsername(username);
 	}
 
 	@Override
 	public Todo deleteTodoById(Long id) {
-		Todo todo = findById(id);
-		if (null != todo) {
-			todos.remove(todo);
-			return todo;
+		Optional<Todo> todo = repository.findById(id);
+		if (todo.isPresent()) {
+			try {
+				repository.deleteById(id);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return null;
+			}
+			return todo.get();
 		}
 		return null;
 	}
@@ -46,8 +44,7 @@ public class TodoServiceImpl implements TodoService {
 	// We will make it public so that it can be reused for fetch by id
 	@Override
 	public Todo findById(Long id) {
-		Optional<Todo> optionalTodo = todos.stream()
-				.filter(todoObj -> (Objects.nonNull(todoObj) && id == todoObj.getId())).findFirst();
+		Optional<Todo> optionalTodo = repository.findById(id);
 		if (optionalTodo.isPresent()) {
 			return optionalTodo.get();
 		}
@@ -59,12 +56,11 @@ public class TodoServiceImpl implements TodoService {
 		if (null == todo.getId() || todo.getId() < 0) {
 			// Need to revisit if logic, null check should be good if you don't pass value
 			// Create Todo
-			todo.setId(++counter);
-			todos.add(todo);
+			todo.setId(null);
+			todo = repository.save(todo);
 		} else {
 			// Update Todo
-			deleteTodoById(todo.getId());
-			todos.add(todo);
+			todo = repository.save(todo);
 		}
 		return todo;
 	}
