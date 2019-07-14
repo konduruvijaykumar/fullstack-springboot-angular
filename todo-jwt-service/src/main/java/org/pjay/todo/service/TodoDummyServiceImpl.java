@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-public class TodoServiceImpl implements TodoService {
+public class TodoDummyServiceImpl implements TodoDummyService {
 
 	private static List<Todo> todos = new ArrayList<>();
 	private static long counter = 0;

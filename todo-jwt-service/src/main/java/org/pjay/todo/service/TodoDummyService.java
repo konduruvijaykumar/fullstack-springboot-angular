@@ -11,7 +11,7 @@ import org.pjay.todo.model.Todo;
  * @author vijayk
  *
  */
-public interface TodoService {
+public interface TodoDummyService {
 
 	List<Todo> getAllTodos(String username);
 
