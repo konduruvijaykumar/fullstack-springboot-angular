@@ -5,6 +5,11 @@ package org.pjay.todo.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -17,8 +22,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Component
 // We will try to use the same dto class as entity class to complete the project quickly
 // Better practice is to write separate classes and use converters to transform to different objects 
+@Entity
 public class Todo {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String username;
 	private String description;
