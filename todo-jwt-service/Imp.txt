@@ -1,5 +1,6 @@
 https://jwt.io/introduction/
 https://dzone.com/articles/spring-boot-security-json-web-tokenjwt-hello-world
+http://sivatechlab.com/secure-rest-api-using-spring-security-oauth2/
 https://www.javainuse.com/spring/jwt
 https://www.javainuse.com/spring/boot-jwt
 https://www.javainuse.com/spring/boot-jwt-mysql
